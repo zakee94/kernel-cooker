@@ -1,0 +1,14 @@
+ui_print("Edit as you wish !");
+package_extract_dir("tmp", "/tmp/");
+package_extract_dir("kernel", "/tmp/kernel");
+set_perm(0, 0, 0755, "/tmp/install.sh");
+set_perm(0, 0, 0755, "/tmp/busybox");
+set_perm(0, 0, 0755, "/tmp/mkbootimg");
+set_perm(0, 0, 0755, "/tmp/unpackbootimg");
+set_perm(0, 0, 0755, "/tmp/lz4");
+set_perm(0, 0, 0755, "/tmp/cmdline");
+run_program("/tmp/busybox", "mount", "/system");
+run_program("/tmp/busybox", "mount", "/data");
+assert(run_program("/tmp/install.sh") == 0);
+run_program("/tmp/busybox", "unmount", "/system");
+run_program("/tmp/busybox", "unmount", "/data");

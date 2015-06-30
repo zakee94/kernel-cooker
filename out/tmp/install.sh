@@ -22,10 +22,6 @@ else
 	exit 1
 fi
 
-for i in $($BUSYBOX grep -lr "kcal" /tmp/out_ramfs | $BUSYBOX sed '/sepolicy/d'); do
-	$BUSYBOX sed -i '/kcal/d' $i
-done
-
 rm $rdcomp
 
 case $rdcomp in

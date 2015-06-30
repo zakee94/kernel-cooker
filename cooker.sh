@@ -66,6 +66,19 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
     fi
   fi
   echo -e "\n------------------------------------------------------------"
+  echo -e "\nMake menuconfig ??"
+  echo -e "To make enter y or Y, any other character to not make."
+  read mn_config
+  if [[ "$mn_config" == "y" || "$mn_config" == "Y" ]]; then
+    if [ -a .config ]; then
+      make menuconfig
+      echo -e "\nDONE !"
+    else
+      echo -e "\n.config not detected, make sure to make defconfig first"
+      echo -e "and then try again !"
+    fi
+  fi
+  echo -e "\n------------------------------------------------------------"
   echo -e "\nSTART THE BUILD ??"
   echo -e "To start enter y or Y, any other character to not start."
   read build

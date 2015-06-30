@@ -34,7 +34,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
   echo -e "To make enter y or Y, any other character to not make."
   read config
   if [[ "$config" == "y" || "$config" == "Y" ]]; then
-    ARCH=arm make $defconfig
+    make $defconfig
     echo -e "\nDONE !"
   fi
   echo -e "\n------------------------------------------------------------"
@@ -42,7 +42,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
   echo -e "To start enter y or Y, any other character to not start."
   read build
   if [[ "$build" == "y" || "$build" == "Y" ]]; then
-    ARCH=arm make -j5
+    make -j5
 	./dtbToolCM -2 -o out/kernel/dt.img -s 2048 -p scripts/dtc/ arch/arm/boot/
   fi
   echo -e "\n------------------------------------------------------------"

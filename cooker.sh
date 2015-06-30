@@ -102,11 +102,13 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
     else
       zimg=zImage-dtb
     fi
+    echo -e "\n[ $zimg SELECTED ]"
     check=0
     while [ $check==0 ]
     do
     echo -e "\n------------------------------------------------------------"
-    echo -e "\n[*] Enter 1 for Any-Kernel packaging"
+    echo -e "\nSELECT PACKAGING METHOD :-"
+    echo -e "[*] Enter 1 for Any-Kernel packaging"
     echo -e "[*] Enter 2 for boot.img packaging"
     echo -e "[*] Enter 3 to exit"
     read kernel

@@ -22,21 +22,9 @@ else
 	exit 1
 fi
 
-# <name_of_your_script> Starting Script
-found=$(find init.qcom.rc -type f | xargs grep -oh "# <name_of_your_script> start");
-if [ "$found" != '# <name_of_your_script> start' ]; then
-sed -e '/# CM Performance Profiles/,/    write \/sys\/class\/devfreq\/qcom,cpubw.65 performance/c\# <name_of_your_script> start' -i init.qcom.rc;
-echo "# <name_of_your_script> start" >> init.qcom.rc;
-echo "on property:sys.boot_completed=1" >> init.qcom.rc;
-echo "exec <name_of_your_script>.sh" >> init.qcom.rc;
-echo "# <name_of_your_script> end" >> init.qcom.rc;
-fi;
-
-# make kernel open
-cp -vr ../extras/default.prop .
-cp -vr ../extras/<name_of_your_script>.sh .
-
-chmod -R 755 /tmp/out_ramfs
+for i in $($BUSYBOX grep -lr "kcal" /tmp/out_ramfs | $BUSYBOX sed '/sepolicy/d'); do
+	$BUSYBOX sed -i '/kcal/d' $i
+done
 
 rm $rdcomp
 
@@ -49,7 +37,7 @@ case $rdcomp in
 		;;
 esac
 
-/tmp/mkbootimg --kernel /tmp/kernel/zImage --ramdisk $rdcomp --dt /tmp/kernel/dt.img --cmdline "$(cat /tmp/cmdline)" --pagesize $(cat /tmp/out/boot.img-pagesize) --base $(cat /tmp/out/boot.img-base) --ramdisk_offset $(cat /tmp/out/boot.img-ramdisk_offset) --tags_offset $(cat /tmp/out/boot.img-tags_offset) --output /tmp/newboot.img
+/tmp/mkbootimg --kernel /tmp/kernel/zImage --ramdisk $rdcomp --dt /tmp/kernel/dt.img --cmdline "$(cat /tmp/out/boot.img-cmdline)" --pagesize $(cat /tmp/out/boot.img-pagesize) --base $(cat /tmp/out/boot.img-base) --ramdisk_offset $(cat /tmp/out/boot.img-ramdisk_offset) --tags_offset $(cat /tmp/out/boot.img-tags_offset) --output /tmp/newboot.img
 
 if [ -z /tmp/newboot.img ]; then exit 1; fi
 

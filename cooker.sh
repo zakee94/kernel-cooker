@@ -143,7 +143,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
       echo -e "\nCreating flashable zip archive..."
       cd $anykernel
       cd ..
-      zip -r $archive_name . -x \*.zip
+      zip -r9 $archive_name . -x \*.zip
       echo -e "\nALL DONE !!!"
       echo -e "ZIP SUCCESSFULLY CREATED !"
       # Moves if needed
@@ -202,7 +202,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
       cp -i boot.img $bootzip_dir
       echo -e "\nCreating flashable zip archive..."
       cd $bootzip_dir
-      zip -r $archive_name . -x \*.zip
+      zip -r9 $archive_name . -x \*.zip
       echo -e "\nALL DONE !!!"
       echo -e "ZIP SUCCESSFULLY CREATED !"
       # Moves if needed

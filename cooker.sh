@@ -28,7 +28,7 @@ echo -e "|------------------------------------------------------------|"
 echo -e "|                      KERNEL COOKER                         |"
 echo -e "|------------------------------------------------------------|"
 echo -e "\nWELCOME $USER, LETS BEGIN..."
-echo -e "To begin enter y or Y, any other character to exit."
+echo -e "To begin enter [Y/y], any other character to exit."
 read begin
 if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
   echo -e "\n------------------------------------------------------------"
@@ -36,7 +36,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
     if [ -a $BOOT/Image ] || [ -a $BOOT/zImage ] || [ -a $BOOT/zImage-dtb ]; then
     echo -e "\nPREVIOUS BUILD DETECTED !"
     echo -e "Do you want to clean it ?"
-    echo -e "To clean enter y or Y, any other character to remain dirty."
+    echo -e "To clean enter [Y/y], any other character to remain dirty."
     read clean
       if [[ "$clean" == "y" || "$clean" == "Y" ]]; then
         rm $BOOT/zImage-dtb $BOOT/zImage $BOOT/Image
@@ -46,7 +46,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
     fi
   echo -e "\n------------------------------------------------------------"
   echo -e "\nMake clean & make Mrproper ??"
-  echo -e "To clean enter y or Y, any other character to remain dirty."
+  echo -e "To clean enter [Y/y], any other character to remain dirty."
   read proper
   if [[ "$proper" == "y" || "$proper" == "Y" ]]; then
     make clean && make mrproper
@@ -54,7 +54,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
   fi
   echo -e "\n------------------------------------------------------------"
   echo -e "\nMake defconfig ??"
-  echo -e "To make enter y or Y, any other character to not make."
+  echo -e "To make enter [Y/y], any other character to not make."
   read config
   if [[ "$config" == "y" || "$config" == "Y" ]]; then
     if [ -a .config ]; then
@@ -67,7 +67,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
   fi
   echo -e "\n------------------------------------------------------------"
   echo -e "\nMake menuconfig ??"
-  echo -e "To make enter y or Y, any other character to not make."
+  echo -e "To make enter [Y/y], any other character to not make."
   read mn_config
   if [[ "$mn_config" == "y" || "$mn_config" == "Y" ]]; then
     if [ -a .config ]; then
@@ -80,7 +80,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
   fi
   echo -e "\n------------------------------------------------------------"
   echo -e "\nSTART THE BUILD ??"
-  echo -e "To start enter y or Y, any other character to not start."
+  echo -e "To start enter [Y/y], any other character to not start."
   read build
   if [[ "$build" == "y" || "$build" == "Y" ]]; then
     if [ -a $BOOT/Image ] || [ -a $BOOT/zImage ] || [ -a $BOOT/zImage-dtb ]; then
@@ -119,7 +119,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
       if [ -a $anykernel/zImage ] || [ -a $anykernel/zImage-dtb ]; then
         echo -e "\nPrevious images detected !"
         echo -e "\nIt is highly recommended that you clean it."
-        echo -e "To clean enter y or Y, any other character to remain dirty."
+        echo -e "To clean enter [Y/y], any other character to remain dirty."
         read clean_any
           if [[ "$clean_any" == "y" || "$clean_any" == "Y" ]]; then
             rm $anykernel/zImage-dtb $anykernel/zImage
@@ -149,7 +149,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
       # Moves if needed
       echo -e "\n------------------------------------------------------------"
       echo -e "\nDo you want to move zip in your prefered directory ??"
-      echo -e "To move enter y or Y, any other character to not move."
+      echo -e "To move enter [Y/y], any other character to not move."
       read move
       if [[ "$move" == "y" || "$move" == "Y" ]]; then
         echo -e "\nMoving..."
@@ -175,7 +175,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
       if [ -a $bootimg/zImage ] || [ -a $bootimg/zImage-dtb ] || [ -a $bootimg/boot.img ]; then
         echo -e "\nPrevious images detected !"
         echo -e "\nIt is highly recommended that you clean it "
-        echo -e "To clean enter y or Y, any other character to remain dirty."
+        echo -e "To clean enter [Y/y], any other character to remain dirty."
         read clean_boot
           if [[ "$clean_boot" == "y" || "$clean_boot" == "Y" ]]; then
             rm $bootimg/zImage-dtb $bootimg/zImage $bootimg/boot.img
@@ -208,7 +208,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
       # Moves if needed
       echo -e "\n------------------------------------------------------------"
       echo -e "\nDo you want to move zip in your prefered directory ??"
-      echo -e "To move enter y or Y, any other character to not move."
+      echo -e "To move enter [Y/y], any other character to not move."
       read move_again
       if [[ "$move_again" == "y" || "$move_again" == "Y" ]]; then
         echo -e "\nMoving..."
@@ -240,7 +240,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
     esac
   done
   else
-    echo -e "\nNo trace of zImage-dtb. :("
+    echo -e "\nNo trace of any Images. :("
     echo -e "\nThis can be because of 2 reasons :-"
     echo -e "  1. Either you have not build the kernel OR"
     echo -e "  2. Your build is unsuccessfull."

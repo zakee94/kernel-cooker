@@ -6,6 +6,7 @@
 # By default supports Moto G 2014, however can be modified for ANY device.
 # Personal Space --> (your paths)
 export CROSS_COMPILE=< your path > # self explanatory
+architect=ARCH=arm # or arch64, specify your architecture as required
 BOOT=arch/arm/boot # DO NOT CHANGE THIS !
 defconfig=< name of your defconfig > # self explanatory
 archive_name=< as you wish > # name of the zip file which will be generated
@@ -61,7 +62,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
       echo -e "\nPrevious .config detected, make sure to clean first"
       echo -e "and then try again !"
     else
-      ARCH=arm make $defconfig
+      $architect make $defconfig
       echo -e "\nDONE !"
     fi
   fi
@@ -87,7 +88,7 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
     echo -e "\nPrevious build detected  make sure to clean first"
     echo -e "and then try again !"
     else
-      make -j5 ARCH=arm
+      make -j5 $architect
     fi
   fi
   echo -e "\n------------------------------------------------------------"
